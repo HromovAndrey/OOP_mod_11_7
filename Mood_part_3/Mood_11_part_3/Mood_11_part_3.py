@@ -56,3 +56,32 @@ class Student:
 
 student1 = Student("Гвидо")
 
+class MyClass:
+    def __init__(self):
+        self.__private_vriable = 10
+
+    def _private_method(self):
+        print("Це приватний метод")
+
+obj = MyClass
+print(obj._private_variable)
+obj._private_method()
+
+class BankAccount:
+    def __init__(self, balance):
+        self._balance = balance #ініцевузалі обьект
+    def get_balance(self):
+        return self.__balance
+    def  deposite(self, amount):
+        self._balance += amount
+    def withdraw(self, amount):
+        if amount <= self._balance:
+            self._balance -= amount
+        else:
+             print("Недостатньо коштів на рахунку")
+    def get_balance(self):
+        return self._balance
+account = BankAccount(1000)
+account.deposite(500)
+account.withdram(200)
+print(account.get_balance())
