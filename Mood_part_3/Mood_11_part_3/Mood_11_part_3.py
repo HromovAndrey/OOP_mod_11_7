@@ -1,87 +1,37 @@
-class MyClass:
-    def public_method(self):
-        print("Це публічний  метод")
-    def public_method2(self):
-        print("Hello from method")
-        self.public_method1()
+class Apartment:
+    def __init__(self, num_rooms, area):
+        self.__num_rooms = num_rooms
+        self.__area = area
 
-obj = MyClass
-obj.public_method()
+    def get_num_rooms(self):
+        return self.__num_rooms
+    def get_area(self):
+        return self.__area
 
-
-class MyClass:
-    def __init__(self):
-        self.protected_attribute = 10
-
-    def _protected_method(self):
-        print("Це захищенний метод")
-
-class SubClass(MyClass):
-    def access_protected(self):
-        print(self._protected_attribute)
-        self._protected_method()
-
-obj = SubClass()
-obj.access_protected()
-
-class MyClass:
-    def __init__(self):
-        self.attribute = 20 # PUBLIC
-        self._attribute = 10 # private
+apartment = Apartment(4 ,54)
+print(f"{apartment.get_num_rooms()=}")
+print(f"{apartment.get_area()=}")
 
 
-    def get_attribute(self):
-      return self._attribute
+class Event:
+    def __init__(self, name, desc, date):
+        self.__name = name
+        self.__desc = desc
+        self.__date = date
 
-obj = MyClass()
+    def set_data(self, new_date):
+        self.__date = new_date
+    def set_desc(self, new_desc):
+        self.__desc = new_desc
 
-print(f"{obj._attribute=}")
-print(f"{obj.get_attribute()=}")
+    def get_name(self):
+        return self.__name
 
+    def get_data(self):
+        return self.__data
 
-class MyClass:
-    def __init__(self):
-        self.__private_attribute = 20
-    def __private_method(self):
-       print("Це праватний метод")
+    def get_desc(self):
+        return self.__desc
 
-obj = MyClass()
-#Спробуйте звернутися до приватного атрибуту чи методу викличте AttributeError
-print(obj.__private_attribute)
-obj.__private_method()
-
-class Student:
-    def __init__(self, name):
-        self.name = name
-
-student1 = Student("Гвидо")
-
-class MyClass:
-    def __init__(self):
-        self.__private_vriable = 10
-
-    def _private_method(self):
-        print("Це приватний метод")
-
-obj = MyClass
-print(obj._private_variable)
-obj._private_method()
-
-class BankAccount:
-    def __init__(self, balance):
-        self._balance = balance #ініцевузалі обьект
-    def get_balance(self):
-        return self.__balance
-    def  deposite(self, amount):
-        self._balance += amount
-    def withdraw(self, amount):
-        if amount <= self._balance:
-            self._balance -= amount
-        else:
-             print("Недостатньо коштів на рахунку")
-    def get_balance(self):
-        return self._balance
-account = BankAccount(1000)
-account.deposite(500)
-account.withdram(200)
-print(account.get_balance())
+    def __str__(self):
+        return f"Name:{}"
