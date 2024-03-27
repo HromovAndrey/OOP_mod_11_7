@@ -1,138 +1,141 @@
 #Завдання 1
-#Створіть клас "Користувач" з атрибутами "ім'я", "вік" та
-#"email". Застосуйте інкапсуляцію, щоб забезпечити, що ці
-#дані можна отримати лише через методи класу.
+#До вже реалізованого класу «Людина» додайте статичний метод, який під час виклику повертає кількість
+#створених об’єктів класу «Людина».
 
-class User:
-    def __init__(self, name, age, email):
-        self.__name = name
-        self.__age = age
-        self.__email = email
+class Person:
+    count = 0
 
-    def get_name(self):
-        return self.__name
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        Person.count += 1
 
-    def get_age(self):
-        return self.__age
-
-    def get_email(self):
-        return self.__email
-
-    def set_name(self, name):
-        self.__name = name
-
-    def set_age(self, age):
-        self.__age = age
-
-    def set_email(self, email):
-        self.__email = email
+    @staticmethod
+    def get_instance_count():
+        return Person.count
 
 
-user1 = User( "Іван", 25, "ivan@example.com")
+person1 = Person("John", 30)
+person2 = Person("Alice", 25)
 
-print("Ім'я користувача:", user1.get_name())
-print("Вік користувача:", user1.get_age())
-print("Email користувача:", user1.get_email())
+print(Person.get_instance_count())
 
 #Завдання 2
-#Реалізуйте клас "Кошик для покупок" з можливістю
-#додавання товарів та підрахунку загальної вартості.
-#Застосуйте інкапсуляцію для забезпечення правильності
-#обробки даних.
+#Створіть клас для підрахунку площі геометричних
+#фігур. Клас має надавати функціональність підрахунку
+#площі трикутника за різними формулами, площі прямокутника, площі квадрата, площі ромба. Методи класу для
+#підрахунку площі реалізуйте за допомогою статичних
+#методів. Також клас має розрахувати кількість підрахунків площі та повернути це значення статичним методом.
 
-class ShoppingCart:
-    def __init__(self):
-        self.__items = {}
+class AreaCalculator:
+    count = 0
 
-    def add_item(self, item_name, quantity, price_per_unit):
-        if not isinstance(quantity, int) or not isinstance(price_per_unit, (int, float)):
-            print("Помилка: кількість має бути цілим числом, а ціна - числом.")
-            return
-        if item_name in self.__items:
-            self.__items[item_name]['quantity'] += quantity
-        else:
-            self.__items[item_name] = {'quantity': quantity, 'price_per_unit': price_per_unit}
+    def calculate_triangle_area(base, height):
+        AreaCalculator.count += 1
+        return 0.5 * base * height
 
-    def calculate_total_price(self):
-        total_price = 0
-        for item_info in self.__items.values():
-            total_price += item_info['quantity'] * item_info['price_per_unit']
-        return total_price
-cart = ShoppingCart()
+    def calculate_rectangle_area(length, width):
+        AreaCalculator.count += 1
+        return length * width
 
 
-cart.add_item("Яблука", 3, 10)
-cart.add_item("Молоко", 1, 20)
-cart.add_item("Хліб", 2, 15)
+    def calculate_square_area(side):
+        AreaCalculator.count += 1
+        return side ** 2
 
 
-total_price = cart.calculate_total_price()
-print("Загальна вартість покупок:", total_price)
+    def calculate_rhombus_area(diagonal1, diagonal2):
+        AreaCalculator.count += 1
+        return 0.5 * diagonal1 * diagonal2
+
+
+    def get_calculation_count():
+        return AreaCalculator.count
+
+print("Площа трикутника:", AreaCalculator.calculate_triangle_area(5, 6))
+print("Площа прямокутника:", AreaCalculator.calculate_rectangle_area(4, 8))
+print("Площа квадрата:", AreaCalculator.calculate_square_area(7))
+print("Площа ромба:", AreaCalculator.calculate_rhombus_area(10, 12))
+
+print("Загальна кількість підрахунків:", AreaCalculator.get_calculation_count())
+
 
 #Завдання 3
-#Створіть клас "Електронний Гаманець" додавши
-#можливість видаляти та додавати гроші, а також перевіряти
-#баланс.
-class ElectronicWallet:
-    def __init__(self):
-        self.__balance = 0  # початковий баланс
+#Створіть клас для підрахунку максимуму з чотирьох
+#аргументів, мінімуму з чотирьох аргументів, середнє
+#арифметичне із чотирьох аргументів, факторіалу аргументу. Реалізуйте функціональність у вигляді статичних
+#методів.
 
-    def add_money(self, amount):
-        if amount > 0:
-            self.__balance += amount
-            print(f"Додано {amount} грн. Новий баланс: {self.__balance} грн.")
+class MathOperations:
+
+    def find_maximum(a, b, c, d):
+        return max(a, b, c, d)
+
+    def find_minimum(a, b, c, d):
+        return min(a, b, c, d)
+
+    def calculate_average(a, b, c, d):
+        return (a + b + c + d) / 4
+
+    def calculate_factorial(n):
+        if n == 0:
+            return 1
         else:
-            print("Неприпустима сума для додавання.")
+            return n * MathOperations.calculate_factorial(n - 1)
 
-    def remove_money(self, amount):
-        if 0 < amount <= self.__balance:
-            self.__balance -= amount
-            print(f"Знято {amount} грн. Новий баланс: {self.__balance} грн.")
-        else:
-            print("Неприпустима сума для зняття або недостатньо коштів на рахунку.")
-
-    def check_balance(self):
-        print(f"Поточний баланс: {self.__balance} грн.")
-
-wallet = ElectronicWallet()
-
-wallet.add_money(100)
-wallet.add_money(50)
-
-wallet.remove_money(30)
-
-wallet.check_balance()
+print("Максимум:", MathOperations.find_maximum(5, 10, 3, 8))
+print("Мінімум:", MathOperations.find_minimum(5, 10, 3, 8))
+print("Середнє арифметичне:", MathOperations.calculate_average(5, 10, 3, 8))
+print("Факторіал 5:", MathOperations.calculate_factorial(5))
 
 #Завдання 4
-#Створіть клас "Комп'ютер", який має зберігати
-#інформацію про процесор, ОЗУ та відеокарту. Застосуйте
-#інкапсуляцію для захисту цих даних від змін.
+#Створіть клас FileUtils, який має метод класу
+#count_lines, який приймає шлях до файлу і повертає
+#кількість рядків у файлі.
 
-class Computer:
-    def __init__(self, processor, ram, gpu):
-        self.__processor = processor
-        self.__ram = ram
-        self.__gpu = gpu
+class FileUtils:
 
-    def get_processor(self):
-        return self.__processor
+    def count_lines(file_path):
+        try:
+            with open(file_path, 'r') as file:
+                return sum(1 for line in file)
+        except FileNotFoundError:
+            print("Файл не знайдено.")
+            return -1
+        except Exception as e:
+            print("Виникла помилка:", e)
+            return -1
 
-    def get_ram(self):
-        return self.__ram
+file_path = "example.txt"
+line_count = FileUtils.count_lines(file_path)
+if line_count != -1:
+    print(f"Кількість рядків у файлі {file_path}: {line_count}")
 
-    def get_gpu(self):
-        return self.__gpu
+#Завдання 5
+#Створіть клас Character, який має атрибути name, health
+#та damage. Реалізуйте метод класу attack, який виводить
+#повідомлення про атаку гравця.
+class Character:
+    def __init__(self, name, health, damage):
+        self.name = name
+        self.health = health
+        self.damage = damage
 
-    def display_info(self):
-        print("Інформація про комп'ютер:")
-        print(f"Процесор: {self.__processor}")
-        print(f"ОЗУ: {self.__ram}")
-        print(f"Відеокарта: {self.__gpu}")
+    def attack(self):
+        print(f"{self.name} атакує зі шкодою {self.damage}!")
+#Завдання 6
+#Створіть клас Student, який має атрибути name, age,
+#grade та courses. Реалізуйте метод класу add_course, який
+#додає новий предмет до списку курсів студента
+class Student:
+    def __init__(self, name, age, grade):
+        self.name = name
+        self.age = age
+        self.grade = grade
+        self.courses = []
 
-my_computer = Computer("Intel Core i7", "16 ГБ", "NVIDIA GeForce RTX 3060")
-my_computer.display_info()
-
-
-
+    def add_course(self, course):
+        self.courses.append(course)
+        print(f"{course} був доданий до списку курсів студента {self.name}")
 
 
