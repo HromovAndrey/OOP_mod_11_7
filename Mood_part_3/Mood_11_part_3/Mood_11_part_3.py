@@ -1,161 +1,113 @@
-#До вже реалізованого класу «Людина» додайте статичний метод, який під час виклику повертає кількість
-#створених об’єктів класу «Людина».
-class Human:
-    count = 0
+#Завдання 1
+#До вже реалізованого класу «Дріб» додайте статичний метод, який при виклику повертає кількість створених об’єктів
+#класу «Дріб».
 
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-        Human.count += 1
+class Дріб:
+    кількість_створених_обєктів = 0
+
+    def __init__(self, чисельник, знаменник):
+        self.чисельник = чисельник
+        self.знаменник = знаменник
+        Дріб.кількість_створених_обєктів += 1
 
     @staticmethod
-    def get_count():
-        return Human.count
+    def кількість_обєктів():
+        return Дріб.кількість_створених_обєктів
 
-human1 = Human("Іван", 25)
-human2 = Human("Марія", 30)
+дріб1 = Дріб(1, 2)
+дріб2 = Дріб(3, 4)
+дріб3 = Дріб(5, 6)
 
-print(Human.get_count())
-
-
+print("Кількість створених об'єктів класу 'Дріб':", Дріб.кількість_обєктів())
 #Завдання 2
-#Створіть клас для підрахунку площі геометричних
-#фігур. Клас має надавати функціональність підрахунку
-#площі трикутника за різними формулами, площі прямокутника, площі квадрата, площі ромба. Методи класу для
-#підрахунку площі реалізуйте за допомогою статичних
-#mетодів. Також клас має розрахувати кількість підрахунків площі та повернути це значення статичним методом.
+#Створіть клас для конвертування температури з Цельсія
+#у Фаренгейт, і навпаки. У класі має знаходитися два статичні
+#методи: для конвертування з Цельсія у Фаренгейт і для конвертування з Фаренгейта у Цельсій. Також клас має розрахувати
+#кількість підрахунків температури та повернути це значення
+#статичним методом
 
-class GeometryCalculator:
-    calculation_count = 0
-
-    @staticmethod
-    def calculate_triangle_area(base, height):
-        GeometryCalculator.calculation_count += 1
-        return 0.5 * base * height
+class TemperatureConverter:
+    підрахунки_температури = 0
 
     @staticmethod
-    def calculate_rectangle_area(length, width):
-        GeometryCalculator.calculation_count += 1
-        return length * width
+    def celsius_to_fahrenheit(цельсій):
+        TemperatureConverter.підрахунки_температури += 1
+        return (цельсій * 9/5) + 32
 
     @staticmethod
-    def calculate_square_area(side):
-        GeometryCalculator.calculation_count += 1
-        return side ** 2
+    def fahrenheit_to_celsius(фаренгейт):
+        TemperatureConverter.підрахунки_температури += 1
+        return (фаренгейт - 32) * 5/9
 
     @staticmethod
-    def calculate_rhombus_area(diagonal1, diagonal2):
-        GeometryCalculator.calculation_count += 1
-        return 0.5 * diagonal1 * diagonal2
+    def кількість_підрахунків_температури():
+        return TemperatureConverter.підрахунки_температури
 
-    @staticmethod
-    def get_calculation_count():
-        return GeometryCalculator.calculation_count
+цельсій = 30
+фаренгейт = TemperatureConverter.celsius_to_fahrenheit(цельсій)
+print(f"{цельсій} градусів Цельсія дорівнює {фаренгейт} градусам Фаренгейта.")
 
-triangle_area = GeometryCalculator.calculate_triangle_area(4, 6)
-rectangle_area = GeometryCalculator.calculate_rectangle_area(5, 7)
-square_area = GeometryCalculator.calculate_square_area(4)
-rhombus_area = GeometryCalculator.calculate_rhombus_area(8, 10)
+новий_цельсій = TemperatureConverter.fahrenheit_to_celsius(фаренгейт)
+print(f"{фаренгейт} градусів Фаренгейта дорівнює {новий_цельсій} градусам Цельсія.")
 
-print("Triangle area:", triangle_area)
-print("Rectangle area:", rectangle_area)
-print("Square area:", square_area)
-print("Rhombus area:", rhombus_area)
-print("Total calculations:", GeometryCalculator.get_calculation_count())
-
+print("Кількість підрахунків температури:", TemperatureConverter.кількість_підрахунків_температури())
 #Завдання 3
-#Створіть клас для підрахунку максимуму з чотирьох
-#аргументів, мінімуму з чотирьох аргументів, середнє
-#арифметичне із чотирьох аргументів, факторіалу аргументу. Реалізуйте функціональність у вигляді статичних
-#методів.
+#Створіть клас для конвертування з метричної системи в
+#англійську, та навпаки. Реалізуйте функціональність у вигляді
+#статичних методів. Обов’язково реалізуйте конвертування
+#заходів довжини.
 
-class MathUtils:
-    @staticmethod
-    def find_maximum(a, b, c, d):
-        return max(a, b, c, d)
+class LengthConverter:
+    підрахунки_довжини = 0
 
     @staticmethod
-    def find_minimum(a, b, c, d):
-        return min(a, b, c, d)
+    def meters_to_feet(метри):
+        LengthConverter.підрахунки_довжини += 1
+        return метри * 3.28084
 
     @staticmethod
-    def calculate_average(a, b, c, d):
-        return (a + b + c + d) / 4
+    def feet_to_meters(фути):
+        LengthConverter.підрахунки_довжини += 1
+        return фути / 3.28084
 
     @staticmethod
-    def calculate_factorial(n):
-        if n == 0:
-            return 1
-        factorial = 1
-        for i in range(1, n + 1):
-            factorial *= i
-        return factorial
+    def кількість_підрахунків_довжини():
+        return LengthConverter.підрахунки_довжини
 
-maximum = MathUtils.find_maximum(10, 20, 30, 40)
-minimum = MathUtils.find_minimum(10, 20, 30, 40)
-average = MathUtils.calculate_average(10, 20, 30, 40)
-factorial = MathUtils.calculate_factorial(5)
+метри = 10
+фути = LengthConverter.meters_to_feet(метри)
+print(f"{метри} метрів дорівнює {фути} футам.")
 
-print("Maximum:", maximum)
-print("Minimum:", minimum)
-print("Average:", average)
-print("Factorial:", factorial)
+нові_метри = LengthConverter.feet_to_meters(фути)
+print(f"{фути} футів дорівнює {нові_метри} метрам.")
 
+print("Кількість підрахунків довжини:", LengthConverter.кількість_підрахунків_довжини())
 #Завдання 4
-#Створіть клас FileUtils, який має метод класу
-#count_lines, який приймає шлях до файлу і повертає
-#кількість рядків у файлі.
-class FileUtils:
-    @staticmethod
-    def count_lines(file_path):
-        try:
-            with open(file_path, 'r') as file:
-                lines = file.readlines()
-                return len(lines)
-        except FileNotFoundError:
-            print("File not found.")
-            return -1
-        except Exception as e:
-            print("An error occurred:", str(e))
-            return -1
+# Створіть клас InformationSystem, який має атрибут data
+#- словник, де ключі - це імена користувачів, а значення -
+#список їх контактів. Реалізуйте методи класу для додавання
+#нових користувачів та їх контактів.
+class InformationSystem:
+    def __init__(self):
+        self.data = {}
 
-file_path = "example.txt"
-lines_count = FileUtils.count_lines(file_path)
-if lines_count != -1:
-    print("Number of lines in the file:", lines_count)
+    def add_user(self, username):
+        if username not in self.data:
+            self.data[username] = []
 
-#Завдання 5
-#Створіть клас Character, який має атрибути name, health
-#та damage. Реалізуйте метод класу attack, який виводить
-#повідомлення про атаку гравця.
-class Character:
-    def __init__(self, name, health, damage):
-        self.name = name
-        self.health = health
-        self.damage = damage
+    def add_contact(self, username, contact):
+        if username in self.data:
+            self.data[username].append(contact)
+        else:
+            print(f"Користувача '{username}' не знайдено.")
 
-    def attack(self):
-        print(f"{self.name} attacks with {self.damage} damage!")
+system = InformationSystem()
 
-player1 = Character("Player 1", 100, 20)
-player1.attack()
+system.add_user("John")
+system.add_contact("John", "Mary")
+system.add_contact("John", "Peter")
 
-#Завдання 6
-#Створіть клас Student, який має атрибути name, age,
-#grade та courses. Реалізуйте метод класу add_course, який
-#додає новий предмет до списку курсів студента
-class Student:
-    def __init__(self, name, age, grade):
-        self.name = name
-        self.age = age
-        self.grade = grade
-        self.courses = []
+system.add_user("Alice")
+system.add_contact("Alice", "Bob")
 
-    def add_course(self, course):
-        self.courses.append(course)
-
-student1 = Student("John", 18, 12)
-student1.add_course("Math")
-student1.add_course("Physics")
-
-print(f"{student1.name} is taking the following courses: {', '.join(student1.courses)}")
+print(system.data)
