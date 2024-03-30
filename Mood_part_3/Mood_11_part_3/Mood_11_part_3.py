@@ -1,113 +1,76 @@
 #Завдання 1
-#До вже реалізованого класу «Дріб» додайте статичний метод, який при виклику повертає кількість створених об’єктів
-#класу «Дріб».
+#Реалізуйте клас «Людина». Збережіть у класі: ПІБ,
+#дату народження, контактний телефон, місто, країну,
+#домашню адресу. Реалізуйте методи класу для введення-виведення даних та інших операцій.
+class Person:
+    def __init__(self, full_name, date_of_birth, phone_number, city, country, home_addres):
+        self.full_name = full_name
+        self.date_of_birth = date_of_birth
+        self.phone_number = phone_number
+        self.city = city
+        self.country = country
+        self.home_address = home_addres
 
-class Дріб:
-    кількість_створених_обєктів = 0
+    def display_info(self):
+        print("ПІБ", self.full_name)
+        print("Дата народження:", self.date_of_birth)
+        print("Контактні телефони:", self.phone_number)
+        print("Місто:", self.city)
+        print("Країна:", self.country)
+        print("Домашня адреса:", self.home_addres)
 
-    def __init__(self, чисельник, знаменник):
-        self.чисельник = чисельник
-        self.знаменник = знаменник
-        Дріб.кількість_створених_обєктів += 1
+person1 = Person("Бобров, Сергій, Юрійович" "01.03.93", "+380667002389", "Миколаїв", "Україна")
+person1.display_info()
 
-    @staticmethod
-    def кількість_обєктів():
-        return Дріб.кількість_створених_обєктів
-
-дріб1 = Дріб(1, 2)
-дріб2 = Дріб(3, 4)
-дріб3 = Дріб(5, 6)
-
-print("Кількість створених об'єктів класу 'Дріб':", Дріб.кількість_обєктів())
 #Завдання 2
-#Створіть клас для конвертування температури з Цельсія
-#у Фаренгейт, і навпаки. У класі має знаходитися два статичні
-#методи: для конвертування з Цельсія у Фаренгейт і для конвертування з Фаренгейта у Цельсій. Також клас має розрахувати
-#кількість підрахунків температури та повернути це значення
-#статичним методом
+#Створіть клас «Місто». Збережіть у класі: назву міста,
+#назву регіону, назву країни, кількість жителів у місті,
+#поштовий індекс міста, телефонний код міста. Реалізуйте
+#методи класу для введення-виведення даних та інших
+#операцій.
 
-class TemperatureConverter:
-    підрахунки_температури = 0
+class City():
+    def __init__(self, name, region, state, population, phone_code):
+        self.name = name
+        self.region = region
+        self.state = state
+        self.population = population
+        self.phone_code = phone_code
+    def info_output(self):
+      print(f"City{self.name} located in region of {self.state}. Current population is:{self.population} and {self.phone_code}):
+    def info_input(self):
+      self.name = input("Input city name:")
+      self.region = input("Input region name:")
+      self.state = input("Input name of the state:")
+      self.population = input("Input number of population:")
+      self.phone_code = input("Input phone code")
 
-    @staticmethod
-    def celsius_to_fahrenheit(цельсій):
-        TemperatureConverter.підрахунки_температури += 1
-        return (цельсій * 9/5) + 32
+      print(f"city{self.name} located in region of{self.region} in {self.state} Current population{self.population} and {self.phone_code}")
+city = City("Mukolaiv", "North", "Ukreina", "2.5m", "+18067889")
+city.info_output()
 
-    @staticmethod
-    def fahrenheit_to_celsius(фаренгейт):
-        TemperatureConverter.підрахунки_температури += 1
-        return (фаренгейт - 32) * 5/9
 
-    @staticmethod
-    def кількість_підрахунків_температури():
-        return TemperatureConverter.підрахунки_температури
-
-цельсій = 30
-фаренгейт = TemperatureConverter.celsius_to_fahrenheit(цельсій)
-print(f"{цельсій} градусів Цельсія дорівнює {фаренгейт} градусам Фаренгейта.")
-
-новий_цельсій = TemperatureConverter.fahrenheit_to_celsius(фаренгейт)
-print(f"{фаренгейт} градусів Фаренгейта дорівнює {новий_цельсій} градусам Цельсія.")
-
-print("Кількість підрахунків температури:", TemperatureConverter.кількість_підрахунків_температури())
 #Завдання 3
-#Створіть клас для конвертування з метричної системи в
-#англійську, та навпаки. Реалізуйте функціональність у вигляді
-#статичних методів. Обов’язково реалізуйте конвертування
-#заходів довжини.
+#Створіть клас «Країна». Збережіть у класі: назву країни,
+#назву континенту, кількість жителів країни, телефонний
+#код країни, назву столиці, назву міст країни. Реалізуйте
+#методи класу для введення-виведення даних та інших
+#операцій.
 
-class LengthConverter:
-    підрахунки_довжини = 0
+class Country:
+    def __init__(self, name, continent, population, pnone_code, capital, cities - []):
+         self.name = name
+         self.continent = continent
+         sef.populaion = population
+         self.phone_CODE = phone_code
+         self.capital = capital
+         self.cities = cities
+    def __str__(self)
+         cities_str _ ",". join(self,cities)
+         return(f"country^:{self.name}\nContinent:{self.continent} \nPopulation:{self.population} \nPhone_code:{self.code}\ncapital{self.capital}n\cities:{self.cities}")
+    def add_city(self, city_name):
+         self.cities.append()
+         print(f"Added city{city_name} to the country.")
 
-    @staticmethod
-    def meters_to_feet(метри):
-        LengthConverter.підрахунки_довжини += 1
-        return метри * 3.28084
-
-    @staticmethod
-    def feet_to_meters(фути):
-        LengthConverter.підрахунки_довжини += 1
-        return фути / 3.28084
-
-    @staticmethod
-    def кількість_підрахунків_довжини():
-        return LengthConverter.підрахунки_довжини
-
-метри = 10
-фути = LengthConverter.meters_to_feet(метри)
-print(f"{метри} метрів дорівнює {фути} футам.")
-
-нові_метри = LengthConverter.feet_to_meters(фути)
-print(f"{фути} футів дорівнює {нові_метри} метрам.")
-
-print("Кількість підрахунків довжини:", LengthConverter.кількість_підрахунків_довжини())
-#Завдання 4
-# Створіть клас InformationSystem, який має атрибут data
-#- словник, де ключі - це імена користувачів, а значення -
-#список їх контактів. Реалізуйте методи класу для додавання
-#нових користувачів та їх контактів.
-class InformationSystem:
-    def __init__(self):
-        self.data = {}
-
-    def add_user(self, username):
-        if username not in self.data:
-            self.data[username] = []
-
-    def add_contact(self, username, contact):
-        if username in self.data:
-            self.data[username].append(contact)
-        else:
-            print(f"Користувача '{username}' не знайдено.")
-
-system = InformationSystem()
-
-system.add_user("John")
-system.add_contact("John", "Mary")
-system.add_contact("John", "Peter")
-
-system.add_user("Alice")
-system.add_contact("Alice", "Bob")
-
-print(system.data)
+country = Country("Україна", "Європа", 44000000, "+380", "Київ", ["Київ", "Харків", "Одеса", "Львів"])
+country.display_info()
