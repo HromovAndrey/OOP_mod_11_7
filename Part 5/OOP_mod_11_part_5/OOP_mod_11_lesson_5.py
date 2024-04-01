@@ -83,3 +83,21 @@ class Student(Person):
 student = Student("John", 27, "male", "0012345")
 student.get_info(["math", "Python", "C++"])
 
+class Teacher(Person):
+    def __init__(self, name, age, gender, employee_id):
+        super().__init__(name, age, gender)
+        self._employee_id = employee_id
+        self._students = []
+    def get_name(self):
+         return self._name
+    def get_id(self):
+        return self._employee_id
+    def set_id(self, new_id):
+        self._employee_id = new_id
+
+    def add_student(self, student: Student):
+        self._students.append(student)
+    def add_grate(self, grate):
+        for student in self._students:
+            print(f"{student.get_name()} отримав {grate}")
+
