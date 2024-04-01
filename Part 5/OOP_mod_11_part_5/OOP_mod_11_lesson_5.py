@@ -101,3 +101,41 @@ class Teacher(Person):
         for student in self._students:
             print(f"{student.get_name()} отримав {grate}")
 
+student1 = Student("John", 27, "male", "49354954")
+student2 = Student("Mike", 27, "male", "49354954")
+
+teacher = Teacher("Anna", 35, "female", "990993454")
+teacher.add_student(student1)
+teacher.add_student(student2)
+teacher.add_grate(12)
+
+
+class Product:
+    def __init__(self, name, price, quantity):
+        self._name = name
+        self._price = price
+        self._quantity = quantity
+#
+class CD(Product):
+    def __init__(self, name, price, quantity, singer, num_song):
+        super().__init__(name, price, quantity)
+        self._singer = singer
+        self._num_song = num_song
+    def get_singer(self):
+        return self._singer
+    def set_singer(self, new_singer):
+        self._singer = new_singer
+
+    def get_number(self):
+        return self._song
+    def set_number(self, new_song):
+        self._song = new_song
+#
+class MusicalInstrument(Product):
+    def __init__(self, name, price, quantity, singer, instryment_type, material):
+        super().__init__(name, price, quantity)
+        self._type = instryment_type
+        self._material = material
+
+cd = CD("CD_name", 200, 1, "ACDC", 10)
+print(cd.get_singer())
