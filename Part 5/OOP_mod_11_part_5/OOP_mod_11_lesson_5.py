@@ -34,8 +34,8 @@ class Figue:
         self.area = area
         print('init from Figue')
 
-class Circle:
-    def __init__(self, area, radius):
+class Circle(Figue):
+    def __init__(self, area, radius, *args):
         super._radius = radius
         print("init from Circle")
 
@@ -45,3 +45,35 @@ class Circle:
 
 obj = Circle(20, 3)
 
+
+class Parent:
+    def __init__(self, name, = "Anna"):
+        self.name = name
+        print("Я батько - ініціалізувався")
+
+class Child(Parent):
+    def __init__(self, name, additional_info):
+        #super().__init__(name) #Виклик конструктора батківського класу
+        self.additional_info = additional_info
+        #self.name = name
+
+# Створення обьекта
+child_obj = Child("ChildName", "Additionalinfo")
+print(child_obj.name)
+
+class Person:
+    def __init__(self, name, age, gender):
+        self._name = name
+        self._age = age
+        self._gender = gender
+class Student(Person):
+     def __init__(self,name, age, gender, student_id):
+         super().__init__(name, age, gender)
+         self._student_id = student_id
+     def get_id(self):
+         return self._student_id
+     def set_id(self, new_id):
+         self._student_id = new_id
+
+     def get_info(self, objects):
+         print(f"Студент {self._name }")
