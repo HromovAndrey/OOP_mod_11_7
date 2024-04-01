@@ -76,4 +76,10 @@ class Student(Person):
          self._student_id = new_id
 
      def get_info(self, objects):
-         print(f"Студент {self._name }")
+         print(f"Студент {self._name}вивчає")
+
+     for i, object in enumerate(objects)
+          print(f"{i}. {object}")
+student = Student("John", 27, "male", "0012345")
+student.get_info(["math", "Python", "C++"])
+
